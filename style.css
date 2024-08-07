@@ -7,6 +7,8 @@
     font-weight: 800;
     font-style: normal;
     color: #ffff;
+    transition: all ease .3s;
+    scroll-behavior: smooth;
 }
 
 h1 {
@@ -26,28 +28,46 @@ body {
 }
 
 .carteirinha-atual {
+    scroll-behavior: smooth;
     width: 90vw;
-    height: 90vh;
+    height: 60vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     border-radius: 20px;
     overflow-x: auto;
-    background-color: #507DBC;
+    background-color: #EDE7E3;
     scroll-snap-type: x mandatory;
     scroll-padding: 10 2px;
     gap: 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+} 
+
+.links {
+    width: 90vw;
+    height: 6vh;
+    display: flex;
+    justify-content: space-around;
 }
 
+.links > a {
+    font-size: 3rem;
+    color: #FFA62B;
+    text-decoration: none;
+}
 
+.links > a:active {
+    scale: .8;
+}
 
 .carteirinha {
+    scroll-behavior: smooth;
     border-radius: 20px;
     flex: 0 0 85vw;
     scroll-snap-align: start;
     background-color: #071013;
     width: 90%;
-    height: 90%;
+    height: 100%;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -57,7 +77,7 @@ body {
 }
 
 .carteirinha > img {
-    height: 35vh
+    height: 35vh;
 }
 
 .carteirinha > h2 {
