@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+
+* {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    color: #ffff;
+}
+
+h1 {
+    font-size: 6rem;
+    color: black;
+}
+
+p {
+    color: black;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carteirinha-atual {
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 20px;
+    overflow-x: auto;
+    background-color: #C9DCB3;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 10 2px;
+    gap: 15px;
+}
+
+
+
+.carteirinha {
+    border-radius: 20px;
+    flex: 0 0 85vw;
+    scroll-snap-align: start;
+    background-color: #071013;
+    width: 90%;
+    height: 90%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5%;
+
+}
+
+.carteirinha > img {
+    height: 50vh
+}
+
+.carteirinha > h2 {
+    font-size: 5rem;
+}
