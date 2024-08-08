@@ -72,14 +72,16 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 2%;
+    gap: 5px;
 
 }
 
 .carteirinha > img {
     height: 35vh;
+    width: 35vh;
+    background-color: #ffff;
 }
 
 .carteirinha > h2 {
-    font-size: 5rem;
+    font-size: 3rem;
 }
