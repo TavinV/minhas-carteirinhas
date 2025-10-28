@@ -1,35 +1,329 @@
 <!DOCTYPE html>
-<html lang="br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minhas Carteirinhas</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --text: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .navigation {
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            padding: 5px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px 0;
+            border: none;
+            background: transparent;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .carteirinha-container {
+            position: relative;
+            height: 500px;
+            margin-bottom: 20px;
+        }
+
+        .carteirinha {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+
+        .carteirinha.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .carteirinha-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .carteirinha-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .carteirinha-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .user-info {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .user-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .user-id {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 10px;
+            background: white;
+        }
+
+        .carteirinha-footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        .sesi-theme {
+            border-top: 5px solid #e74c3c;
+        }
+
+        .senai-theme {
+            border-top: 5px solid #3498db;
+        }
+
+        .cat-theme {
+            border-top: 5px solid #2ecc71;
+        }
+
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .sesi-logo {
+            background: #e74c3c;
+        }
+
+        .senai-logo {
+            background: #3498db;
+        }
+
+        .cat-logo {
+            background: #2ecc71;
+        }
+
+        .instructions {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Carteirinhas</h1>
-    
-    <div class="links">
-        <a href="#qr_1">Sesi</a>
-        <a href="#qr_2">Senai</a>
-        <a href="#qr_3">Cat</a>
+    <div class="container">
+        <header>
+            <h1>Minhas Carteirinhas</h1>
+            <p class="subtitle">Otávio Vinícius Flauzino de Souza</p>
+        </header>
+
+        <div class="navigation">
+            <button class="nav-btn active" data-target="sesi">Sesi</button>
+            <button class="nav-btn" data-target="senai">Senai</button>
+            <button class="nav-btn" data-target="cat">CAT</button>
+        </div>
+
+        <div class="carteirinha-container">
+            <div id="qr_1" class="carteirinha sesi-theme active">
+                <div class="carteirinha-header">
+                    <div class="logo-placeholder sesi-logo">SESI</div>
+                    <h2 class="carteirinha-title">SESI</h2>
+                    <div class="logo-placeholder sesi-logo">SESI</div>
+                </div>
+                
+                <div class="user-info">
+                    <div class="user-name">Otávio Vinícius Flauzino de Souza</div>
+                    <div class="user-id">ID: 2023001</div>
+                </div>
+                
+                <div class="qr-container">
+                    <img src="img/Sesi_QR.png" alt="QR Code Sesi" class="qr-code">
+                </div>
+                
+                <div class="carteirinha-footer">
+                    Serviço Social da Indústria
+                </div>
+            </div>
+
+            <div id="qr_2" class="carteirinha senai-theme">
+                <div class="carteirinha-header">
+                    <div class="logo-placeholder senai-logo">SENAI</div>
+                    <h2 class="carteirinha-title">SENAI</h2>
+                    <div class="logo-placeholder senai-logo">SENAI</div>
+                </div>
+                
+                <div class="user-info">
+                    <div class="user-name">Otávio Vinícius Flauzino de Souza</div>
+                    <div class="user-id">ID: 2023002</div>
+                </div>
+                
+                <div class="qr-container">
+                    <img src="img/Senai_QR.png" alt="QR Code Senai" class="qr-code">
+                </div>
+                
+                <div class="carteirinha-footer">
+                    Serviço Nacional de Aprendizagem Industrial
+                </div>
+            </div>
+
+            <div id="qr_3" class="carteirinha cat-theme">
+                <div class="carteirinha-header">
+                    <div class="logo-placeholder cat-logo">CAT</div>
+                    <h2 class="carteirinha-title">CAT</h2>
+                    <div class="logo-placeholder cat-logo">CAT</div>
+                </div>
+                
+                <div class="user-info">
+                    <div class="user-name">Otávio Vinícius Flauzino de Souza</div>
+                    <div class="user-id">ID: 2023003</div>
+                </div>
+                
+                <div class="qr-container">
+                    <img src="img/Cat_QR.png" alt="QR Code Cat" class="qr-code">
+                </div>
+                
+                <div class="carteirinha-footer">
+                    Clube de Atividades Tecnológicas
+                </div>
+            </div>
+        </div>
+
+        <p class="instructions">Toque nos botões para alternar entre as carteirinhas</p>
     </div>
 
-    <div class="carteirinha-atual">
-        <div id="qr_1" class="carteirinha">
-            <h2>Sesi</h2>
-            <img src="img/Sesi_QR.png" alt="">
-        </div>
-        <div id="qr_2" class="carteirinha">
-            <h2>Senai</h2>
-            <img src="img/Senai_QR.png" alt="">
-        </div>
-
-        <div id="qr_3" class="carteirinha">
-            <h2>CAT</h2>
-            <img src="img/Cat_QR.png" alt="">
-        </div>
-    </div>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const carteirinhas = document.querySelectorAll('.carteirinha');
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    
+                    // Atualiza botões de navegação
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Atualiza carteirinhas visíveis
+                    carteirinhas.forEach(card => {
+                        card.classList.remove('active');
+                        if (card.id === `qr_${getCardIndex(target)}`) {
+                            setTimeout(() => {
+                                card.classList.add('active');
+                            }, 50);
+                        }
+                    });
+                });
+            });
+            
+            function getCardIndex(target) {
+                switch(target) {
+                    case 'sesi': return 1;
+                    case 'senai': return 2;
+                    case 'cat': return 3;
+                    default: return 1;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
